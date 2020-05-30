@@ -7,6 +7,10 @@ class JiraDataV2(object):
         return issue.key
 
     @staticmethod
+    def get_summary(issues: Issue) -> str:
+        return issues.raw['fields']['summary']
+
+    @staticmethod
     def get_blocking_issues_keys(issue: Issue) -> [str]:
         links = issue.raw['fields']['issuelinks']
 
