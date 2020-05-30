@@ -1,21 +1,16 @@
-from jira import JIRA
-from .server_connection import server_connection
-
-
-def setup_connection():
-    options = {'server': server_connection['server_https']}
-    jira = JIRA(options=options,
-                basic_auth=(server_connection['email'], server_connection['api_token']))
-    return jira
+from .jira_wrapper import JiraAPIv2
+from .jira_wrapper import JiraDataV2
 
 
 def main():
     print('jira-pert is running...\n')
-    jira = setup_connection()
+    jira_api = JiraAPIv2()
 
-    epic_key = 'MAR-36'
-    features = jira.search_issues("'Epic Link' = {epic_key}".format(epic_key=epic_key))
-    print(features)
+    epic_key = 'SAN-1'
+    features = jira_api.get_issues_in_epic(epic_key)
+    for feature in features:
+        print(JiraDataV2.get_key(feature))
+        print("depends on:", JiraDataV2.get_blocking_issues_keys(feature))
 
 
 if __name__ == "__main__":
