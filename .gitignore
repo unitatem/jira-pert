@@ -7,3 +7,6 @@ venv/
 
 # PyCharm
 .idea/
+
+# project
+server_connection.py
