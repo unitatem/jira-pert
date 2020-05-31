@@ -1,5 +1,6 @@
 from jira import JIRA
-from ..server_connection import server_connection
+
+from jira_pert.server_connection import server_connection
 
 
 class JiraAPIv2(object):

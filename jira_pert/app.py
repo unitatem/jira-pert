@@ -1,11 +1,10 @@
-from .jira_wrapper import JiraAPIv2
-from .jira_wrapper import JiraDataV2
-from .pert_graph import PertGraph
-from .pert_diagram import PertDiagram
+from jira_pert.jira_wrapper import JiraAPIv2, JiraDataV2
+from jira_pert.pert_diagram import PertDiagram
+from jira_pert.pert_graph import PertGraph
 
 
 def main():
-    print('jira-pert is running...\n')
+    print('jira_pert is running...\n')
 
     epic_key = 'SAN-1'
 
