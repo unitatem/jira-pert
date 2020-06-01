@@ -1,3 +1,5 @@
+from typing import Dict
+
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -23,19 +25,29 @@ class PertDiagram(object):
         # nx.draw_networkx()
         # nx.draw_networkx_edges()
         nx.draw(graph,
-                with_labels=True,
+                **self._get_labels(),
                 **self._get_layout(graph),
                 **self._get_node_style())
         plt.show()
 
-    def _get_layout(self, graph):
+    def _get_labels(self) -> Dict:
+        labels = dict()
+        for key, node in self._model.get_graph().items():
+            labels[key] = node.summary
+
+        return dict(
+            with_labels=True,
+            labels=labels
+        )
+
+    def _get_layout(self, graph) -> Dict:
         # default: pos=nx.spectral_layout(graph)
         return dict(
             pos=ChronologicalLayout(self._model).get_layout()
         )
 
     @staticmethod
-    def _get_node_style():
+    def _get_node_style() -> Dict:
         return dict(
             node_size=2200,
             node_color='blue',
