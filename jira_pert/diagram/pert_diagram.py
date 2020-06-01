@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
-from jira_pert.pert_graph import PertGraph
+from jira_pert.model.pert_graph import PertGraph
 
 
 class PertDiagram(object):

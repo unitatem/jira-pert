@@ -1,6 +1,6 @@
 from jira_pert.jira_wrapper import JiraAPIv2, JiraDataV2
-from jira_pert.pert_diagram import PertDiagram
-from jira_pert.pert_graph import PertGraph
+from jira_pert.diagram.pert_diagram import PertDiagram
+from jira_pert.model.pert_graph import PertGraph
 
 
 def main():
@@ -17,6 +17,7 @@ def main():
                        summary=JiraDataV2.get_summary(feature),
                        dependencies=JiraDataV2.get_blocking_issues_keys(feature))
 
+    graph.print()
     diagram = PertDiagram(graph)
     diagram.plot()
 
