@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
+from jira_pert.diagram.chronological_layout import ChronologicalLayout
 from jira_pert.model.pert_graph import PertGraph
 
 
@@ -18,14 +19,20 @@ class PertDiagram(object):
 
         self._draw(graph)
 
-    def _draw(self, graph):
+    def _draw(self, graph: nx.DiGraph):
         # nx.draw_networkx()
         # nx.draw_networkx_edges()
         nx.draw(graph,
-                pos=nx.spectral_layout(graph),
                 with_labels=True,
+                **self._get_layout(graph),
                 **self._get_node_style())
         plt.show()
+
+    def _get_layout(self, graph):
+        # default: pos=nx.spectral_layout(graph)
+        return dict(
+            pos=ChronologicalLayout(self._model).get_layout()
+        )
 
     @staticmethod
     def _get_node_style():
