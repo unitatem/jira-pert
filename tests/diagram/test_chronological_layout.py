@@ -18,6 +18,19 @@ class ChronologicalLayoutTest(unittest.TestCase):
         self.assertEqual(['B'], engine._gates[1])
         self.assertEqual(['C'], engine._gates[2])
 
+    def test_three_nodes_in_reverse_order(self):
+        graph = PertGraph()
+        graph.add_node('C', "", ['B'])
+        graph.add_node('B', "", ['A'])
+        graph.add_node('A', "", [])
+
+        engine = ChronologicalLayout(graph)
+        engine.get_layout()
+
+        self.assertEqual(['A'], engine._gates[0])
+        self.assertEqual(['B'], engine._gates[1])
+        self.assertEqual(['C'], engine._gates[2])
+
 
 if __name__ == '__main__':
     unittest.main()
