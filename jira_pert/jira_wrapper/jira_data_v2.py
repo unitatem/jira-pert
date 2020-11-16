@@ -2,17 +2,17 @@ from jira.resources import Issue
 
 
 class JiraDataV2(object):
-    @staticmethod
-    def get_key(issue: Issue) -> str:
-        return issue.key
+    def __init__(self, issue: Issue):
+        self._issue = issue
 
-    @staticmethod
-    def get_summary(issues: Issue) -> str:
-        return issues.raw['fields']['summary']
+    def get_key(self) -> str:
+        return self._issue.key
 
-    @staticmethod
-    def get_blocking_issues_keys(issue: Issue) -> [str]:
-        links = issue.raw['fields']['issuelinks']
+    def get_summary(self) -> str:
+        return self._issue.raw['fields']['summary']
+
+    def get_blocking_issues_keys(self) -> [str]:
+        links = self._issue.raw['fields']['issuelinks']
 
         keys = []
         for link in links:
