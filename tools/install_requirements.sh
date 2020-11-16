@@ -1,3 +1,4 @@
 #!/bin/bash
 
-pip3.6 install -r requirements.txt
+python -m pip install -r requirements.txt
+
