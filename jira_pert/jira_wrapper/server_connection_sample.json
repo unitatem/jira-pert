@@ -1,0 +1,5 @@
+{
+    "server_https": "https://example.atlassian.net",
+    "email": "example@domain.com",
+    "api_token": "example"
+}

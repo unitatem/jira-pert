@@ -9,4 +9,4 @@ venv/
 .idea/
 
 # project
-server_connection.py
+server_connection.json
