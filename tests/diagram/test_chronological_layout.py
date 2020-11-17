@@ -7,9 +7,9 @@ from jira_pert.model.pert_graph import PertGraph
 class ChronologicalLayoutTest(unittest.TestCase):
     def test_three_nodes_in_order(self):
         graph = PertGraph()
-        graph.add_node('A', "", [])
-        graph.add_node('B', "", ['A'])
-        graph.add_node('C', "", ['B'])
+        graph._add_node('A', "", [])
+        graph._add_node('B', "", ['A'])
+        graph._add_node('C', "", ['B'])
 
         engine = ChronologicalLayout(graph)
         engine.get_layout()
@@ -20,9 +20,9 @@ class ChronologicalLayoutTest(unittest.TestCase):
 
     def test_three_nodes_in_reverse_order(self):
         graph = PertGraph()
-        graph.add_node('C', "", ['B'])
-        graph.add_node('B', "", ['A'])
-        graph.add_node('A', "", [])
+        graph._add_node('C', "", ['B'])
+        graph._add_node('B', "", ['A'])
+        graph._add_node('A', "", [])
 
         engine = ChronologicalLayout(graph)
         engine.get_layout()
