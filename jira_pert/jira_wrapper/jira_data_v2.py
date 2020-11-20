@@ -11,6 +11,9 @@ class JiraDataV2(object):
     def get_summary(self) -> str:
         return self._issue.raw['fields']['summary']
 
+    def get_type(self) -> str:
+        return self._issue.raw['fields']['issuetype']['name']
+
     def get_blocking_issues_keys(self) -> [str]:
         links = self._issue.raw['fields']['issuelinks']
 
