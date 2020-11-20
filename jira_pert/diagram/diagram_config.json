@@ -1,0 +1,6 @@
+{
+  "node_color": {
+    "Story": "blue",
+    "Bug": "red"
+  }
+}
