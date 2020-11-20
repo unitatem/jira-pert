@@ -1,4 +1,4 @@
 #!/bin/bash
 
-python3 -m jira_pert
+python3 -m jira_pert "$@"
 
