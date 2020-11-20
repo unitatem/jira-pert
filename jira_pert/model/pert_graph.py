@@ -4,11 +4,11 @@ from jira_pert.jira_wrapper import JiraDataV2
 
 
 class PertNode(object):
-    def __init__(self, key: str, summary: str, ticket_type: str, dependencies: [str]):
+    def __init__(self, key: str, **kwargs):
         self.key = key
-        self.summary = summary
-        self.ticket_type = ticket_type
-        self.dependencies = dependencies
+        self.summary = kwargs.get('summary', '')
+        self.ticket_type = kwargs.get('ticket_type', 'Story')
+        self.dependencies = kwargs.get('dependencies', [])
 
 
 class PertGraph(object):
