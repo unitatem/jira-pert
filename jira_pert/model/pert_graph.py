@@ -18,6 +18,9 @@ class PertGraph(object):
         self._graph = dict()
         self._build(features)
 
+    def get_nodes_cnt(self):
+        return len(self._graph)
+
     def _build(self, features: [JiraDataV2]):
         for feature in features:
             self._add_node(key=feature.get_key(),

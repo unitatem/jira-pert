@@ -2,6 +2,7 @@ from typing import Dict, List
 
 import numpy as np
 
+from jira_pert.model.detect_cycle_dfs import DetectCycleDFS
 from jira_pert.model.pert_graph import PertGraph, PertNode
 
 
@@ -10,6 +11,10 @@ class ChronologicalLayout(object):
         self._graph: Dict[str, PertNode] = model.get_graph()
         self._gates: [[str]] = []
         self._positions: Dict[str, List[float]] = dict()
+
+        detect_cycle = DetectCycleDFS(model)
+        if detect_cycle.is_cyclic():
+            raise ValueError('Graph has cycle', detect_cycle.get_cycle())
 
     def get_layout(self) -> Dict[str, List]:
         self._assign_nodes_to_gates()

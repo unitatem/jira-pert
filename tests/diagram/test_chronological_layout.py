@@ -31,6 +31,14 @@ class ChronologicalLayoutTest(unittest.TestCase):
         self.assertEqual(['B'], engine._gates[1])
         self.assertEqual(['C'], engine._gates[2])
 
+    def test_graph_with_cycle(self):
+        graph = PertGraph()
+        graph._add_node(key='A', dependencies=['C'])
+        graph._add_node(key='B', dependencies=['A'])
+        graph._add_node(key='C', dependencies=['B'])
+
+        self.assertRaises(ValueError, ChronologicalLayout, graph)
+
 
 if __name__ == '__main__':
     unittest.main()
