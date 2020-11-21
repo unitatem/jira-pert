@@ -1,6 +1,6 @@
 import unittest
 
-from jira_pert.model.detect_cycle_dfs import DetectCycleDFS
+from jira_pert.model.cycle_detector_dfs import CycleDetectorDFS
 from jira_pert.model.pert_graph import PertGraph
 
 
@@ -12,7 +12,7 @@ class MyTestCase(unittest.TestCase):
         graph._add_node(key='C', dependencies=['A'])
         graph._add_node(key='D', dependencies=['B', 'C'])
 
-        engine = DetectCycleDFS(graph)
+        engine = CycleDetectorDFS(graph)
         self.assertEqual(False, engine.is_cyclic())
 
     def test_cyclic_graph_1(self):
@@ -21,7 +21,7 @@ class MyTestCase(unittest.TestCase):
         graph._add_node(key='B', dependencies=['A'])
         graph._add_node(key='C', dependencies=['B'])
 
-        engine = DetectCycleDFS(graph)
+        engine = CycleDetectorDFS(graph)
         self.assertEqual(True, engine.is_cyclic())
         self.assertEqual(['A', 'B', 'C', 'A'], engine.get_cycle())
 
@@ -33,7 +33,7 @@ class MyTestCase(unittest.TestCase):
         graph._add_node(key='D', dependencies=['C'])
         graph._add_node(key='E', dependencies=['B', 'D'])
 
-        engine = DetectCycleDFS(graph)
+        engine = CycleDetectorDFS(graph)
         self.assertEqual(True, engine.is_cyclic())
         self.assertEqual(['C', 'D', 'E', 'C'], engine.get_cycle())
 

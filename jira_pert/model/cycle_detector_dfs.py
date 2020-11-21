@@ -1,7 +1,7 @@
 from jira_pert.model.pert_graph import PertGraph
 
 
-class DetectCycleDFS(object):
+class CycleDetectorDFS(object):
     def __init__(self, graph: PertGraph):
         self._graph = graph
         self._cycle = []

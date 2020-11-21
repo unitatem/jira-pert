@@ -2,7 +2,7 @@ from typing import Dict, List
 
 import numpy as np
 
-from jira_pert.model.detect_cycle_dfs import DetectCycleDFS
+from jira_pert.model.cycle_detector_dfs import CycleDetectorDFS
 from jira_pert.model.pert_graph import PertGraph, PertNode
 
 
@@ -12,7 +12,7 @@ class ChronologicalLayout(object):
         self._gates: [[str]] = []
         self._positions: Dict[str, List[float]] = dict()
 
-        detect_cycle = DetectCycleDFS(model)
+        detect_cycle = CycleDetectorDFS(model)
         if detect_cycle.is_cyclic():
             raise ValueError('Graph has cycle', detect_cycle.get_cycle())
 
