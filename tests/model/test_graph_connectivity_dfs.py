@@ -22,6 +22,7 @@ class MyTestCase(unittest.TestCase):
 
         graph_connectivity = GraphConnectivityDFS(graph)
         self.assertEqual(False, graph_connectivity.is_connected())
+        self.assertEqual(['C'], graph_connectivity.get_not_connected_nodes())
 
 
 if __name__ == '__main__':

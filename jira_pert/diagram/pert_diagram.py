@@ -5,6 +5,7 @@ import networkx as nx
 
 from jira_pert.diagram.chronological_layout import ChronologicalLayout
 from jira_pert.diagram.diagram_config import DiagramConfig
+from jira_pert.model.graph_connectivity_dfs import GraphConnectivityDFS
 from jira_pert.model.pert_graph import PertGraph
 
 
@@ -13,6 +14,12 @@ class PertDiagram(object):
         self._model = model
         self._graph: nx.DiGraph = None
         self._config = DiagramConfig()
+        self._check_graph_connections()
+
+    def _check_graph_connections(self):
+        graph_connectivity = GraphConnectivityDFS(self._model)
+        if not graph_connectivity.is_connected():
+            print('Graph has not connected elements:', graph_connectivity.get_not_connected_nodes())
 
     def plot(self):
         self._graph = nx.DiGraph()
